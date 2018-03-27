@@ -4,7 +4,7 @@ defmodule PaintEasy.Image do
   """
   defstruct code: nil,
             height: nil,
-            max: nil,
+            pixel_limit: nil,
             pixels: [],
             width: nil
 end

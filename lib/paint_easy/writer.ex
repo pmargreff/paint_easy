@@ -6,10 +6,12 @@ defmodule PaintEasy.Writer do
   Documentation for PaintEasy.Writer
   """
 
-  def create_file(
-        path,
-        %Image{height: height, pixel_limit: pixel_limit, pixels: pixels, width: width}
-      ) do
+  def create_file(path, %Image{
+        height: height,
+        pixel_limit: pixel_limit,
+        pixels: pixels,
+        width: width
+      }) do
     case File.open("#{path}.pgm", [:write]) do
       {:ok, file} ->
         IO.binwrite(file, create_header(:pgm, width, height, pixel_limit))

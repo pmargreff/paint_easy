@@ -28,7 +28,7 @@ defmodule PaintEasy do
     Map.put(image, :pixels, new_matrix)
   end
 
-  def write(filepath \\ DateTime.utc_now() |> DateTime.to_string(), %Image{} = image) do
+  def write(%Image{} = image, filepath \\ DateTime.utc_now() |> DateTime.to_string()) do
     Writer.create_file(filepath, image)
   end
 

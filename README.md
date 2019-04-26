@@ -1,6 +1,7 @@
 # PaintEasy
 
 ![build_status](https://travis-ci.org/pmargreff/paint_easy.svg?branch=master)
+[![codecov](https://codecov.io/gh/pmargreff/paint_easy/branch/master/graph/badge.svg)](https://codecov.io/gh/pmargreff/paint_easy)
 
 Paint easy is a simple tool to generate images from ppm family to allow simple and not optimized image manipulation.
 

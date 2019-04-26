@@ -4,6 +4,11 @@ elixir:
 otp_release:
   - 21.1
 
+cache:
+  directories:
+    - deps
+    - _build/
+
 sudo: false
 
 script:

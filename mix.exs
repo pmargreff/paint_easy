@@ -25,7 +25,7 @@ defmodule PaintEasy.MixProject do
 
   defp deps do
     [
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 0.10.2", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.10.6"}
     ]
   end

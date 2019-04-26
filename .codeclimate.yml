@@ -1,0 +1,10 @@
+plugins:
+  duplication:
+    enabled: false
+  structure:
+    enabled: false
+  credo:
+    enabled: true
+    strict: true
+    all: true
+

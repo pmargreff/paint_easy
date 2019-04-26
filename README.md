@@ -1,5 +1,7 @@
 # PaintEasy
 
+![build_status](https://travis-ci.org/pmargreff/paint_easy.svg?branch=master)
+
 Paint easy is a simple tool to generate images from ppm family to allow simple and not optimized image manipulation.
 
 ## Installation

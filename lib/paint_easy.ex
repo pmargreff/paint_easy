@@ -6,6 +6,10 @@ defmodule PaintEasy do
   @height 1000
   @pixel_limit 255
 
+  def new_p1(width \\ @width, height \\ @height) do
+    new("P1", width, height, 1)
+  end
+
   def new(
         code \\ @code,
         width \\ @width,

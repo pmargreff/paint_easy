@@ -1,21 +1,30 @@
 defmodule PaintEasy do
   alias PaintEasy.{Image, Pixel, Writer}
 
-  @code "P2"
+  @p1 %{
+    code: "P1",
+    pixel_limit: 1
+  }
+
   @width 1000
   @height 1000
-  @pixel_limit 255
 
-  def new_p1(width \\ @width, height \\ @height) do
-    new("P1", width, height, 1)
+  def new_p1(opts \\ []) do
+    defaults = [width: @width, height: @height]
+
+    options =
+      defaults
+      |> Keyword.merge(opts)
+      |> Enum.into(%{})
+
+    %{width: width, height: height} = options
+
+    code = Map.get(@p1, :code)
+    pixel_limit = Map.get(@p1, :pixel_limit)
+    new(code, width, height, pixel_limit)
   end
 
-  def new(
-        code \\ @code,
-        width \\ @width,
-        height \\ @height,
-        pixel_limit \\ @pixel_limit
-      ) do
+  defp new(code, width, height, pixel_limit) do
     image = %Image{
       code: code,
       pixel_limit: pixel_limit,

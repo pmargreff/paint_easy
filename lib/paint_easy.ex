@@ -10,10 +10,6 @@ defmodule PaintEasy do
     Writer.create_file(filepath, image)
   end
 
-  defp create_matrix(pixel, width, height) do
-    for _ <- 1..height, do: for(_ <- 1..width, do: pixel)
-  end
-
   defp generate_new_matrix(pixels, color, x, y) do
     new_line = generate_new_line(pixels, color, x, y)
     List.replace_at(pixels, y, new_line)

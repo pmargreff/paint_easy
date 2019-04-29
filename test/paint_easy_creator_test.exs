@@ -1,12 +1,14 @@
-defmodule PaintEasyTest do
+defmodule PaintEasy.CreatorTest do
+  alias PaintEasy.Creator
+
   use ExUnit.Case
   doctest PaintEasy
 
-  describe "new_p1/2" do
+  describe "new_pbm/2" do
     test "create new image with width and height" do
       width = 10
       height = 10
-      assert {:ok, image} = PaintEasy.new_p1(width: width, height: height)
+      assert {:ok, image} = Creator.new_pbm(width: width, height: height)
 
       assert image.code == "P1"
       assert image.width == width
@@ -15,7 +17,7 @@ defmodule PaintEasyTest do
     end
 
     test "create new image with default values" do
-      assert {:ok, image} = PaintEasy.new_p1()
+      assert {:ok, image} = Creator.new_pbm()
 
       assert image.code == "P1"
       assert image.width == 1000

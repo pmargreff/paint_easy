@@ -4,28 +4,19 @@ defmodule PaintEasy.Creator do
   """
   alias PaintEasy.Image
 
-  @pbm_format %{
-    code: "P1",
-    pixel_limit: 1
-  }
-
   @width 1000
   @height 1000
 
+  @pbm_format %Image{
+    code: "P1",
+    pixel_limit: 1,
+    width: @width,
+    height: @height
+  }
+
   def new_pbm(params \\ []) do
-    %{width: width, height: height} = get_resolution(params)
-    %{code: code, pixel_limit: pixel_limit} = @pbm_format
-
-    new(code, width, height, pixel_limit)
-  end
-
-  defp new(code, width, height, pixel_limit) do
-    image = %Image{
-      code: code,
-      pixel_limit: pixel_limit,
-      height: height,
-      width: width
-    }
+    resolution = get_resolution(params)
+    image = Map.merge(@pbm_format, resolution)
 
     {:ok, image}
   end

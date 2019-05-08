@@ -5,6 +5,7 @@ defmodule PaintEasy.CreatorTest do
   doctest PaintEasy
 
   describe "new_pbm/2" do
+    @tag pending: true
     test "create new image with width and height" do
       width = 10
       height = 10
@@ -14,6 +15,8 @@ defmodule PaintEasy.CreatorTest do
       assert image.width == width
       assert image.height == height
       assert image.pixel_limit == 1
+      assert image.pixel_limit == 1
+      assert length(image.pixels) == 100
     end
 
     test "create new image with default values" do
@@ -23,6 +26,7 @@ defmodule PaintEasy.CreatorTest do
       assert image.width == 1000
       assert image.height == 1000
       assert image.pixel_limit == 1
+      assert length(image.pixels) == 1_000_000
     end
   end
 end

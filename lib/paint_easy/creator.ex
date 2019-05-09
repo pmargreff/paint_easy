@@ -6,6 +6,7 @@ defmodule PaintEasy.Creator do
 
   @width 1000
   @height 1000
+  @default_pixel 0
 
   @pbm_format %Image{
     code: "P1",
@@ -25,7 +26,7 @@ defmodule PaintEasy.Creator do
   end
 
   defp create_pixels(%{width: width, height: heigth}) do
-    List.duplicate(0, width * heigth)
+    List.duplicate(@default_pixel, width * heigth)
   end
 
   defp get_resolution(params) do

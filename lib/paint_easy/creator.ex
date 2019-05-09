@@ -15,10 +15,17 @@ defmodule PaintEasy.Creator do
   }
 
   def new_pbm(params \\ []) do
-    resolution = %{width: width, height: heigth} = get_resolution(params)
-    image = Map.merge(@pbm_format, resolution)
-    new_image = Map.merge(image, %{pixels: List.duplicate(0, width * heigth)})
-    {:ok, new_image}
+    resolution = get_resolution(params)
+    pixels = create_pixels(resolution)
+    image =
+      Map.merge(@pbm_format, resolution)
+      |> Map.put(:pixels, pixels)
+
+    {:ok, image}
+  end
+
+  defp create_pixels(%{width: width, height: heigth}) do
+    List.duplicate(0, width * heigth)
   end
 
   defp get_resolution(params) do

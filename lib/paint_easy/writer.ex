@@ -1,21 +1,14 @@
 defmodule PaintEasy.Writer do
   alias PaintEasy.Image
-  alias PaintEasy.Parser
 
   @moduledoc """
-  Documentation for PaintEasy.Writer
+  Module to write image file on output device.
   """
 
-  def create_file(path, %Image{
-        height: height,
-        pixel_limit: pixel_limit,
-        pixels: pixels,
-        width: width
-      }) do
-    case File.open("#{path}.pgm", [:write]) do
+  def create_file(image, path) do
+    case File.open("#{path}.pbm", [:write]) do
       {:ok, file} ->
-        IO.binwrite(file, create_header(:pgm, width, height, pixel_limit))
-        IO.binwrite(file, Parser.pixels_to_string(pixels))
+        write_image(image, file)
         :ok
 
       {:error, reason} ->
@@ -23,7 +16,13 @@ defmodule PaintEasy.Writer do
     end
   end
 
-  defp create_header(:pgm, width, height, max_color) do
-    "P2\n#{width} #{height}\n#{max_color}\n"
+  def write_image(%Image{} = image, file) do
+    IO.binwrite(file, file_header(image))
+    IO.binwrite(file, file_body(image))
   end
+
+  defp file_header(%{code: code, width: width, height: height, pixel_limit: pixel_limit}),
+    do: "#{code}\n#{width} #{height}\n#{pixel_limit}\n"
+
+  defp file_body(%{pixels: pixels}), do: pixels |> List.flatten() |> Enum.join(" ")
 end

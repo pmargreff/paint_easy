@@ -1,4 +1,6 @@
 defmodule PaintEasy.CreatorTest do
+  @moduledoc false
+
   alias PaintEasy.Creator
 
   use ExUnit.Case

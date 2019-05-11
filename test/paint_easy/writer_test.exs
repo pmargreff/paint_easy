@@ -1,7 +1,6 @@
 defmodule PaintEasy.WriterTest do
-  @moduledoc """
+  @moduledoc false
 
-  """
   alias PaintEasy.{
     Creator,
     Writer

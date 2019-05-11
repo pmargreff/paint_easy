@@ -23,7 +23,7 @@ defmodule PaintEasy.EditorTest do
       assert pixels == [1, 0, 0, 0, 0, 0, 0, 0, 0]
     end
 
-    test "create an line on image" do
+    test "create vertical line on image" do
       {:ok, image} = Creator.new_pbm(width: 3, height: 3)
 
       fun_filter = fn {pixel, index} ->

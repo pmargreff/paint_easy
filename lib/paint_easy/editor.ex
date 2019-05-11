@@ -5,7 +5,8 @@ defmodule PaintEasy.Editor do
 
   def edit(%{pixels: pixels} = image, filter) do
     new_pixels =
-      Enum.with_index(pixels)
+      pixels
+      |> Enum.with_index()
       |> Enum.map(fn pixel_with_index -> filter.(pixel_with_index) end)
 
     Map.put(image, :pixels, new_pixels)

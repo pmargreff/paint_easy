@@ -18,6 +18,7 @@ defmodule PaintEasy.Creator do
   def new_pbm(params \\ []) do
     resolution = get_resolution(params)
     pixels = create_pixels(resolution)
+
     image =
       Map.merge(@pbm_format, resolution)
       |> Map.put(:pixels, pixels)

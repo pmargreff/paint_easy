@@ -5,7 +5,6 @@ defmodule PaintEasy.CreatorTest do
   doctest PaintEasy
 
   describe "new_pbm/2" do
-    @tag pending: true
     test "create new image with width and height" do
       width = 10
       height = 10

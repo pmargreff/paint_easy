@@ -24,5 +24,5 @@ defmodule PaintEasy.Writer do
   defp file_header(%{code: code, width: width, height: height, pixel_limit: pixel_limit}),
     do: "#{code}\n#{width} #{height}\n#{pixel_limit}\n"
 
-  defp file_body(%{pixels: pixels}), do: List.flatten(pixels) |> Enum.join(" ")
+  defp file_body(%{pixels: pixels}), do: pixels |> List.flatten() |> Enum.join(" ")
 end

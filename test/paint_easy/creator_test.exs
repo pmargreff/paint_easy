@@ -1,12 +1,28 @@
 defmodule PaintEasy.CreatorTest do
   @moduledoc false
 
-  alias PaintEasy.Creator
+  alias PaintEasy.{
+    Creator,
+    Pixel
+  }
 
   use ExUnit.Case
   doctest PaintEasy
 
   describe "new_pbm/2" do
+    test "create new image with mapped pixels" do
+      width = 2
+      height = 2
+      assert {:ok, %{pixels: pixels}} = Creator.new_pbm(width: width, height: height)
+
+      assert [
+               %Pixel{color: 0, x: 0, y: 0},
+               %Pixel{color: 0, x: 1, y: 0},
+               %Pixel{color: 0, x: 0, y: 1},
+               %Pixel{color: 0, x: 1, y: 1}
+             ] == pixels
+    end
+
     test "create new image with width and height" do
       width = 10
       height = 10

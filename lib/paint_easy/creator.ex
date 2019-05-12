@@ -2,7 +2,10 @@ defmodule PaintEasy.Creator do
   @moduledoc """
   Module to create new images
   """
-  alias PaintEasy.Image
+  alias PaintEasy.{
+    Image,
+    Pixel
+  }
 
   @width 1000
   @height 1000
@@ -27,8 +30,13 @@ defmodule PaintEasy.Creator do
     {:ok, image}
   end
 
-  defp create_pixels(%{width: width, height: heigth}) do
-    List.duplicate(@default_pixel, width * heigth)
+  defp create_pixels(%{width: width, height: height}) do
+    normalized_height = height - 1
+    normalized_width = width - 1
+
+    for h <- 0..normalized_height,
+        w <- 0..normalized_width,
+        do: %Pixel{color: @default_pixel, x: w, y: h}
   end
 
   defp get_resolution(params) do

@@ -14,13 +14,14 @@ defmodule PaintEasy.EditorTest do
 
       fun_filter = fn {pixel, index} ->
         case index do
-          0 -> 1
+          0 -> Map.put(pixel, :color, 1)
           _ -> pixel
         end
       end
 
       %{pixels: pixels} = Editor.edit(image, fun_filter)
-      assert pixels == [1, 0, 0, 0, 0, 0, 0, 0, 0]
+      pixel_colors = Enum.map(pixels, fn pixel -> Map.get(pixel, :color) end)
+      assert pixel_colors == [1, 0, 0, 0, 0, 0, 0, 0, 0]
     end
 
     test "create vertical line on image" do
@@ -28,13 +29,14 @@ defmodule PaintEasy.EditorTest do
 
       fun_filter = fn {pixel, index} ->
         case index do
-          idx when idx >= 3 and idx <= 5 -> 1
+          idx when idx >= 3 and idx <= 5 -> Map.put(pixel, :color, 1)
           _ -> pixel
         end
       end
 
       %{pixels: pixels} = Editor.edit(image, fun_filter)
-      assert pixels == [0, 0, 0, 1, 1, 1, 0, 0, 0]
+      pixel_colors = Enum.map(pixels, fn pixel -> Map.get(pixel, :color) end)
+      assert pixel_colors == [0, 0, 0, 1, 1, 1, 0, 0, 0]
     end
   end
 end

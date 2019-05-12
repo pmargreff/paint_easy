@@ -1,8 +1,8 @@
 defmodule PaintEasy.Pixel do
-  @default_color 255
+  @default_color 0
 
   @moduledoc """
-  Documentation for PaintEasy.Pixel
+  Defines pixel structure.
   """
   defstruct color: @default_color,
             x: 0,

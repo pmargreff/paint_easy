@@ -38,9 +38,9 @@ defmodule PaintEasy.Reader do
   defp string_to_pixels("P3", pixels, width, height) do
     for h <- 0..height - 1,
         w <- 0..width - 1 do
-          red = Enum.at(pixels, (h * width * 3) + (w * 3)) |> String.to_integer()
-          green = Enum.at(pixels, (h * width * 3) + (w * 3) + 1) |> String.to_integer()
-          blue = Enum.at(pixels, (h * width * 3) + (w * 3) + 2) |> String.to_integer()
+          red = pixels |> Enum.at((h * width * 3) + (w * 3)) |> String.to_integer()
+          green = pixels |> Enum.at((h * width * 3) + (w * 3) + 1) |> String.to_integer()
+          blue = pixels |> Enum.at((h * width * 3) + (w * 3) + 2) |> String.to_integer()
 
           %Pixel{r: red, g: green, b: blue, x: w, y: h}
         end
@@ -49,6 +49,6 @@ defmodule PaintEasy.Reader do
   defp string_to_pixels(_code, pixels, width, height) do
     for h <- 0..height - 1,
         w <- 0..width - 1,
-        do: %Pixel{color: Enum.at(pixels, h * width + w) |> String.to_integer(), x: w, y: h}
+        do: %Pixel{color: pixels |> Enum.at(h * width + w) |> String.to_integer(), x: w, y: h}
   end
 end

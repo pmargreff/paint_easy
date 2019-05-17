@@ -29,5 +29,18 @@ defmodule PaintEasy.WriterTest do
 
       assert capture_io(file_writed) == "P2\n3 3\n255\n0 0 0 0 0 0 0 0 0"
     end
+
+    test "write ppm image on file" do
+      {:ok, image} = Creator.new_ppm(width: 3, height: 3)
+
+      file_writed = fn ->
+        Writer.write_image(image, :stdio)
+      end
+
+      assert capture_io(file_writed) == "P3\n3 3\n255\n" <>
+      "0 0 0 0 0 0 0 0 0 " <>
+      "0 0 0 0 0 0 0 0 0 " <>
+      "0 0 0 0 0 0 0 0 0"
+    end
   end
 end

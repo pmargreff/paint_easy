@@ -25,6 +25,13 @@ defmodule PaintEasy.Creator do
     height: @height
   }
 
+  @ppm_format %Image{
+    code: "P3",
+    pixel_limit: 255,
+    width: @width,
+    height: @height
+  }
+
   def new_pbm(params \\ []) do
     resolution = get_resolution(params)
     pixels = create_pixels(resolution)
@@ -43,6 +50,18 @@ defmodule PaintEasy.Creator do
 
     image =
       @pgm_format
+      |> Map.merge(resolution)
+      |> Map.put(:pixels, pixels)
+
+    {:ok, image}
+  end
+
+  def new_ppm(params \\ []) do
+    resolution = get_resolution(params)
+    pixels = create_pixels(resolution)
+
+    image =
+      @ppm_format
       |> Map.merge(resolution)
       |> Map.put(:pixels, pixels)
 

@@ -37,10 +37,11 @@ defmodule PaintEasy.WriterTest do
         Writer.write_image(image, :stdio)
       end
 
-      assert capture_io(file_writed) == "P3\n3 3\n255\n" <>
-      "0 0 0 0 0 0 0 0 0 " <>
-      "0 0 0 0 0 0 0 0 0 " <>
-      "0 0 0 0 0 0 0 0 0"
+      assert capture_io(file_writed) ==
+               "P3\n3 3\n255\n" <>
+                 "0 0 0 0 0 0 0 0 0 " <>
+                 "0 0 0 0 0 0 0 0 0 " <>
+                 "0 0 0 0 0 0 0 0 0"
     end
   end
 end

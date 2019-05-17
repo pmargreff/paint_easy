@@ -24,6 +24,13 @@ defmodule PaintEasy.Writer do
   defp file_header(%{code: code, width: width, height: height, pixel_limit: pixel_limit}),
     do: "#{code}\n#{width} #{height}\n#{pixel_limit}\n"
 
+  defp file_body(%{pixels: pixels, code: "P3"}) do
+    pixels
+    |> Enum.flat_map(fn %{r: red, g: green, b: blue} -> [red, green, blue] end)
+    |> List.flatten()
+    |> Enum.join(" ")
+  end
+
   defp file_body(%{pixels: pixels}) do
     pixels
     |> Enum.flat_map(fn %{color: color} -> [color] end)

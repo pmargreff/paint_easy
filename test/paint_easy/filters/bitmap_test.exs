@@ -13,7 +13,6 @@ defmodule PaintEasy.Filters.BitmapTest do
   doctest PaintEasy
 
   describe "horizontal_line/2" do
-    @tag dev: true
     test "create an horizontal line in a small bitmap image" do
       {:ok, image} = Creator.new_pbm([width: 3, height: 3])
 

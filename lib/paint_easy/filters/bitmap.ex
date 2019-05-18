@@ -3,6 +3,6 @@ defmodule PaintEasy.Filters.Bitmap do
   Create a sample about how to write pbm edition functions
   """
 
-  def horizontal_line({%{y: 1} = pixel, _}), do: Map.put(pixel, :color, 1)
-  def horizontal_line({pixel, _}), do: pixel
+  def horizontal_line(%{y: 1} = pixel), do: Map.put(pixel, :color, 1)
+  def horizontal_line(pixel), do: pixel
 end

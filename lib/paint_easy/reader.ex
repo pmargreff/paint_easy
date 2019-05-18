@@ -11,16 +11,14 @@ defmodule PaintEasy.Reader do
   def read_file(path) do
     case File.open(path, [:read]) do
       {:ok, file} ->
-        image = IO.binread(file, :all)
-
-        [code, width, height | pixels] =
-          image
+        [code] = IO.binread(file, :line)
+          |> String.split("\n", trim: true)
+        [width, height] = IO.binread(file, :line)
           |> String.split("\n", trim: true)
           |> Enum.join(" ")
           |> String.split()
 
-        pixels =
-          string_to_pixels(code, pixels, String.to_integer(width), String.to_integer(height))
+        pixels = stream_to_pixel(code, IO.stream(file, :line), String.to_integer(width))
 
         image = %Image{
           code: code,
@@ -36,20 +34,36 @@ defmodule PaintEasy.Reader do
     end
   end
 
-  defp string_to_pixels("P3", pixels, width, height) do
-    for h <- 0..(height - 1),
-        w <- 0..(width - 1) do
-      red = pixels |> Enum.at(h * width * 3 + w * 3) |> String.to_integer()
-      green = pixels |> Enum.at(h * width * 3 + w * 3 + 1) |> String.to_integer()
-      blue = pixels |> Enum.at(h * width * 3 + w * 3 + 2) |> String.to_integer()
-
-      %Pixel{r: red, g: green, b: blue, x: w, y: h}
-    end
+  def stream_to_pixel("P3", stream, width) do
+    stream
+    |> Stream.map(&String.trim(&1, "\n"))
+    |> Stream.chunk_every(3)
+    |> Stream.with_index()
+    |> Stream.map(&create_rgb_pixel(&1, width))
   end
 
-  defp string_to_pixels(_code, pixels, width, height) do
-    for h <- 0..(height - 1),
-        w <- 0..(width - 1),
-        do: %Pixel{color: pixels |> Enum.at(h * width + w) |> String.to_integer(), x: w, y: h}
+  def stream_to_pixel(_, stream, width) do
+    stream
+    |> Stream.map(&String.trim(&1, "\n"))
+    |> Stream.with_index()
+    |> Stream.map(&create_pixel(&1, width))
+  end
+
+  defp create_rgb_pixel({[r, g, b], index}, width) do
+    x = rem(index, width)
+    y = div(index, width)
+
+    red = String.to_integer(r)
+    green = String.to_integer(g)
+    blue = String.to_integer(b)
+
+    %Pixel{r: red, g: green, b: blue, x: x, y: y}
+  end
+
+  defp create_pixel({string, index}, width) do
+    x = rem(index, width)
+    y = div(index, width)
+    pixel_value = String.to_integer(string)
+    %Pixel{color: pixel_value, x: x, y: y}
   end
 end

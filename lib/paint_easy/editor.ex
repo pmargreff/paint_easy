@@ -4,7 +4,8 @@ defmodule PaintEasy.Editor do
   """
 
   def edit(%{pixels: pixels} = image, filter) do
-    new_pixels = Enum.map(pixels, fn pixel -> filter.(pixel, image) end)
+    new_pixels = Stream.map(pixels, fn pixel -> filter.(pixel, image) end)
+    |> Enum.to_list()
 
     Map.put(image, :pixels, new_pixels)
   end

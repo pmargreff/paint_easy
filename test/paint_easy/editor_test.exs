@@ -12,7 +12,7 @@ defmodule PaintEasy.EditorTest do
     test "paint first pixel on image" do
       {:ok, image} = Creator.new_pbm(width: 3, height: 3)
 
-      fun_filter = fn pixel ->
+      fun_filter = fn pixel, _ ->
         case pixel do
           %{x: 0, y: 0} -> Map.put(pixel, :color, 1)
           _ -> pixel
@@ -27,7 +27,7 @@ defmodule PaintEasy.EditorTest do
     test "create horizontal line on image" do
       {:ok, image} = Creator.new_pbm(width: 3, height: 3)
 
-      fun_filter = fn pixel ->
+      fun_filter = fn pixel, _ ->
         case pixel do
           %{y: 1} -> Map.put(pixel, :color, 1)
           _ -> pixel

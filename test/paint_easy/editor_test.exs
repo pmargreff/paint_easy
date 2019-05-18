@@ -12,9 +12,9 @@ defmodule PaintEasy.EditorTest do
     test "paint first pixel on image" do
       {:ok, image} = Creator.new_pbm(width: 3, height: 3)
 
-      fun_filter = fn {pixel, index} ->
-        case index do
-          0 -> Map.put(pixel, :color, 1)
+      fun_filter = fn pixel, _ ->
+        case pixel do
+          %{x: 0, y: 0} -> Map.put(pixel, :color, 1)
           _ -> pixel
         end
       end
@@ -24,12 +24,12 @@ defmodule PaintEasy.EditorTest do
       assert pixel_colors == [1, 0, 0, 0, 0, 0, 0, 0, 0]
     end
 
-    test "create vertical line on image" do
+    test "create horizontal line on image" do
       {:ok, image} = Creator.new_pbm(width: 3, height: 3)
 
-      fun_filter = fn {pixel, index} ->
-        case index do
-          idx when idx >= 3 and idx <= 5 -> Map.put(pixel, :color, 1)
+      fun_filter = fn pixel, _ ->
+        case pixel do
+          %{y: 1} -> Map.put(pixel, :color, 1)
           _ -> pixel
         end
       end

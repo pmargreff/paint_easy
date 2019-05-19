@@ -12,11 +12,13 @@ defmodule PaintEasy.Reader do
     case File.open(path, [:read]) do
       {:ok, file} ->
         [code] =
-          IO.binread(file, :line)
+          file
+          |> IO.binread(:line)
           |> String.split("\n", trim: true)
 
         [width, height] =
-          IO.binread(file, :line)
+          file
+          |> IO.binread(:line)
           |> String.split("\n", trim: true)
           |> Enum.join(" ")
           |> String.split()

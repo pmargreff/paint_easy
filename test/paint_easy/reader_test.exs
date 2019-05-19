@@ -19,6 +19,7 @@ defmodule PaintEasy.ReaderTest do
       pixels = Enum.to_list(image.pixels)
 
       assert length(pixels) == 6
+
       assert pixels == [
                %Pixel{color: 1, x: 0, y: 0},
                %Pixel{color: 0, x: 1, y: 0},
@@ -39,6 +40,7 @@ defmodule PaintEasy.ReaderTest do
       pixels = Enum.to_list(image.pixels)
 
       assert length(pixels) == 6
+
       assert pixels == [
                %Pixel{color: 255, x: 0, y: 0},
                %Pixel{color: 0, x: 1, y: 0},
@@ -59,6 +61,7 @@ defmodule PaintEasy.ReaderTest do
       pixels = Enum.to_list(image.pixels)
 
       assert length(pixels) == 6
+
       assert pixels == [
                %Pixel{r: 255, g: 0, b: 0, x: 0, y: 0},
                %Pixel{r: 0, g: 255, b: 0, x: 1, y: 0},

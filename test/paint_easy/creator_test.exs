@@ -10,6 +10,7 @@ defmodule PaintEasy.CreatorTest do
   doctest PaintEasy
 
   describe "new_pbm/2" do
+    @tag dev: true
     test "create new image with mapped pixels" do
       width = 2
       height = 2

@@ -13,7 +13,6 @@ defmodule PaintEasy.WriterTest do
     test "write pbm image on file" do
       {:ok, image} = Creator.new_pbm(width: 3, height: 3)
 
-
       file_writed = fn ->
         Writer.write_image(image, :stdio)
       end

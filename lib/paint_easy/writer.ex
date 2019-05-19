@@ -20,16 +20,17 @@ defmodule PaintEasy.Writer do
     header = file_header(image)
     IO.binwrite(file, header)
 
-    file_stream = IO.stream(file, :line) # File.stream should run faster
+    # File.stream should run faster
+    file_stream = IO.stream(file, :line)
     pixel_stream = pixel_stream_to_file(code, image.pixels)
 
-    Stream.into(pixel_stream, file_stream)
+    pixel_stream
+    |> Stream.into(file_stream)
     |> Stream.run()
   end
 
   defp file_header(%{code: code, width: width, height: height, pixel_limit: pixel_limit}),
     do: "#{code}\n#{width} #{height}\n#{pixel_limit}\n"
-
 
   defp pixel_stream_to_file("P3", pixels) do
     pixels

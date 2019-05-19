@@ -9,7 +9,6 @@ defmodule PaintEasy.ReaderTest do
   use ExUnit.Case
 
   describe "read_file/2" do
-    @tag dev: true
     test "read pbm image file on ascii format" do
       fixture_file = File.cwd!() <> "/test/fixtures/ascii_image.pbm"
       assert {:ok, image} = Reader.read_file(fixture_file)
@@ -30,7 +29,6 @@ defmodule PaintEasy.ReaderTest do
              ]
     end
 
-    @tag dev: true
     test "read pgm image file on ascii format" do
       fixture_file = File.cwd!() <> "/test/fixtures/ascii_image.pgm"
       assert {:ok, image} = Reader.read_file(fixture_file)
@@ -51,7 +49,6 @@ defmodule PaintEasy.ReaderTest do
              ]
     end
 
-    @tag birl: true
     test "read ppm image file on ascii format" do
       fixture_file = File.cwd!() <> "/test/fixtures/ascii_image.ppm"
       assert {:ok, image} = Reader.read_file(fixture_file)

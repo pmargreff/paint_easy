@@ -20,7 +20,7 @@ defmodule PaintEasy.CreatorTest do
                %Pixel{color: 0, x: 1, y: 0},
                %Pixel{color: 0, x: 0, y: 1},
                %Pixel{color: 0, x: 1, y: 1}
-             ] == pixels
+             ] == pixels |> Enum.to_list()
     end
 
     test "create new image with default values" do
@@ -30,7 +30,7 @@ defmodule PaintEasy.CreatorTest do
       assert image.width == 1000
       assert image.height == 1000
       assert image.pixel_limit == 1
-      assert length(image.pixels) == 1_000_000
+      assert image.pixels |> Enum.to_list() |> length() == 1_000_000
     end
 
     test "create new image with width and height" do
@@ -42,7 +42,7 @@ defmodule PaintEasy.CreatorTest do
       assert image.width == width
       assert image.height == height
       assert image.pixel_limit == 1
-      assert length(image.pixels) == 100
+      assert image.pixels |> Enum.to_list() |> length() == 100
     end
   end
 
@@ -57,7 +57,7 @@ defmodule PaintEasy.CreatorTest do
                %Pixel{color: 0, x: 1, y: 0},
                %Pixel{color: 0, x: 0, y: 1},
                %Pixel{color: 0, x: 1, y: 1}
-             ] == pixels
+             ] == pixels |> Enum.to_list()
     end
 
     test "create new image with default values" do
@@ -67,7 +67,7 @@ defmodule PaintEasy.CreatorTest do
       assert image.width == 1000
       assert image.height == 1000
       assert image.pixel_limit == 255
-      assert length(image.pixels) == 1_000_000
+      assert image.pixels |> Enum.to_list() |> length() == 1_000_000
     end
 
     test "create new image with width and height" do
@@ -79,7 +79,7 @@ defmodule PaintEasy.CreatorTest do
       assert image.width == width
       assert image.height == height
       assert image.pixel_limit == 255
-      assert length(image.pixels) == 100
+      assert image.pixels |> Enum.to_list() |> length() == 100
     end
   end
 
@@ -94,7 +94,7 @@ defmodule PaintEasy.CreatorTest do
                %Pixel{r: 0, g: 0, b: 0, x: 1, y: 0},
                %Pixel{r: 0, g: 0, b: 0, x: 0, y: 1},
                %Pixel{r: 0, g: 0, b: 0, x: 1, y: 1}
-             ] == pixels
+             ] == pixels |> Enum.to_list()
     end
 
     test "create new image with default values" do
@@ -104,7 +104,7 @@ defmodule PaintEasy.CreatorTest do
       assert image.width == 1000
       assert image.height == 1000
       assert image.pixel_limit == 255
-      assert length(image.pixels) == 1_000_000
+      assert image.pixels |> Enum.to_list() |> length() == 1_000_000
     end
 
     test "create new image with width and height" do
@@ -116,7 +116,7 @@ defmodule PaintEasy.CreatorTest do
       assert image.width == width
       assert image.height == height
       assert image.pixel_limit == 255
-      assert length(image.pixels) == 100
+      assert image.pixels |> Enum.to_list() |> length() == 100
     end
   end
 end

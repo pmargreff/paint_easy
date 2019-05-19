@@ -17,7 +17,7 @@ defmodule PaintEasy.WriterTest do
         Writer.write_image(image, :stdio)
       end
 
-      assert capture_io(file_writed) == "P1\n3 3\n1\n0 0 0 0 0 0 0 0 0"
+      assert capture_io(file_writed) == "P1\n3 3\n1\n0\n0\n0\n0\n0\n0\n0\n0\n0\n"
     end
 
     test "write pgm image on file" do
@@ -27,7 +27,7 @@ defmodule PaintEasy.WriterTest do
         Writer.write_image(image, :stdio)
       end
 
-      assert capture_io(file_writed) == "P2\n3 3\n255\n0 0 0 0 0 0 0 0 0"
+      assert capture_io(file_writed) == "P2\n3 3\n255\n0\n0\n0\n0\n0\n0\n0\n0\n0\n"
     end
 
     test "write ppm image on file" do
@@ -39,9 +39,9 @@ defmodule PaintEasy.WriterTest do
 
       assert capture_io(file_writed) ==
                "P3\n3 3\n255\n" <>
-                 "0 0 0 0 0 0 0 0 0 " <>
-                 "0 0 0 0 0 0 0 0 0 " <>
-                 "0 0 0 0 0 0 0 0 0"
+                 "0\n0\n0\n0\n0\n0\n0\n0\n0\n" <>
+                 "0\n0\n0\n0\n0\n0\n0\n0\n0\n" <>
+                 "0\n0\n0\n0\n0\n0\n0\n0\n0\n"
     end
   end
 end

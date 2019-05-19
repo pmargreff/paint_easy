@@ -16,9 +16,11 @@ defmodule PaintEasy.ReaderTest do
       assert image.width == 3
       assert image.height == 2
 
-      assert length(image.pixels) == 6
+      pixels = Enum.to_list(image.pixels)
 
-      assert image.pixels == [
+      assert length(pixels) == 6
+
+      assert pixels == [
                %Pixel{color: 1, x: 0, y: 0},
                %Pixel{color: 0, x: 1, y: 0},
                %Pixel{color: 1, x: 2, y: 0},
@@ -35,9 +37,11 @@ defmodule PaintEasy.ReaderTest do
       assert image.width == 3
       assert image.height == 2
 
-      assert length(image.pixels) == 6
+      pixels = Enum.to_list(image.pixels)
 
-      assert image.pixels == [
+      assert length(pixels) == 6
+
+      assert pixels == [
                %Pixel{color: 255, x: 0, y: 0},
                %Pixel{color: 0, x: 1, y: 0},
                %Pixel{color: 255, x: 2, y: 0},
@@ -54,9 +58,11 @@ defmodule PaintEasy.ReaderTest do
       assert image.width == 3
       assert image.height == 2
 
-      assert length(image.pixels) == 6
+      pixels = Enum.to_list(image.pixels)
 
-      assert image.pixels == [
+      assert length(pixels) == 6
+
+      assert pixels == [
                %Pixel{r: 255, g: 0, b: 0, x: 0, y: 0},
                %Pixel{r: 0, g: 255, b: 0, x: 1, y: 0},
                %Pixel{r: 0, g: 0, b: 255, x: 2, y: 0},

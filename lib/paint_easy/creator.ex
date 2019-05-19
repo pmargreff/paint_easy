@@ -69,12 +69,17 @@ defmodule PaintEasy.Creator do
   end
 
   defp create_pixels(%{width: width, height: height}) do
-    normalized_height = height - 1
-    normalized_width = width - 1
+    total_size = width * height
 
-    for h <- 0..normalized_height,
-        w <- 0..normalized_width,
-        do: %Pixel{color: @default_pixel, x: w, y: h}
+    Stream.unfold(0, fn
+      ^total_size ->
+        nil
+
+      acc ->
+        x = rem(acc, width)
+        y = div(acc, width)
+        {%Pixel{color: @default_pixel, x: x, y: y}, acc + 1}
+    end)
   end
 
   defp get_resolution(params) do

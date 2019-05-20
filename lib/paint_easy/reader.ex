@@ -11,26 +11,12 @@ defmodule PaintEasy.Reader do
   def read_file(path) do
     case File.open(path, [:read]) do
       {:ok, file} ->
-        [code] =
-          file
-          |> IO.binread(:line)
-          |> String.split("\n", trim: true)
 
-        [width, height] =
-          file
-          |> IO.binread(:line)
-          |> String.split("\n", trim: true)
-          |> Enum.join(" ")
-          |> String.split()
+        %{code: code, width: width} = image_info = decode_header(file)
 
-        pixels = stream_to_pixel(code, IO.stream(file, :line), String.to_integer(width))
+        pixels = stream_to_pixel(code, IO.stream(file, :line), width)
 
-        image = %Image{
-          code: code,
-          width: String.to_integer(width),
-          height: String.to_integer(height),
-          pixels: pixels
-        }
+        image = Map.put(image_info, :pixels, pixels)
 
         {:ok, image}
 
@@ -39,7 +25,33 @@ defmodule PaintEasy.Reader do
     end
   end
 
-  def stream_to_pixel("P3", stream, width) do
+  defp decode_header(file) do
+    [code] =
+      file
+      |> IO.binread(:line)
+      |> String.split("\n", trim: true)
+
+    [width, height] =
+      file
+      |> IO.binread(:line)
+      |> String.split("\n", trim: true)
+      |> Enum.join(" ")
+      |> String.split()
+
+    [pixel_limit] =
+      file
+      |> IO.binread(:line)
+      |> String.split("\n", trim: true)
+
+      %Image{
+        code: code,
+        width: String.to_integer(width),
+        height: String.to_integer(height),
+        pixel_limit: String.to_integer(pixel_limit)
+      }
+  end
+
+  defp stream_to_pixel("P3", stream, width) do
     stream
     |> Stream.map(&String.trim(&1, "\n"))
     |> Stream.chunk_every(3)
@@ -47,7 +59,7 @@ defmodule PaintEasy.Reader do
     |> Stream.map(&create_rgb_pixel(&1, width))
   end
 
-  def stream_to_pixel(_, stream, width) do
+  defp stream_to_pixel(_, stream, width) do
     stream
     |> Stream.map(&String.trim(&1, "\n"))
     |> Stream.with_index()

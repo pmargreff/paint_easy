@@ -15,6 +15,7 @@ defmodule PaintEasy.ReaderTest do
       assert image.code == "P1"
       assert image.width == 3
       assert image.height == 2
+      assert image.pixel_limit == 1
 
       pixels = Enum.to_list(image.pixels)
 
@@ -36,6 +37,7 @@ defmodule PaintEasy.ReaderTest do
       assert image.code == "P2"
       assert image.width == 3
       assert image.height == 2
+      assert image.pixel_limit == 255
 
       pixels = Enum.to_list(image.pixels)
 
@@ -57,6 +59,7 @@ defmodule PaintEasy.ReaderTest do
       assert image.code == "P3"
       assert image.width == 3
       assert image.height == 2
+      assert image.pixel_limit == 255
 
       pixels = Enum.to_list(image.pixels)
 

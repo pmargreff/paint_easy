@@ -5,8 +5,9 @@ defmodule PaintEasy.Writer do
   Module to write image file on output device.
   """
 
-  def create_file(image, path) do
-    case File.open("#{path}.pbm", [:write]) do
+  def create_file(%{code: code} = image, path) do
+    format = format_from_code(code)
+    case File.open("#{path}.#{format}", [:write]) do
       {:ok, file} ->
         write_image(image, file)
         :ok
@@ -41,4 +42,8 @@ defmodule PaintEasy.Writer do
     pixels
     |> Stream.map(fn %{color: color} -> "#{color}\n" end)
   end
+
+  defp format_from_code("P1"), do: ".pbm"
+  defp format_from_code("P2"), do: ".pgm"
+  defp format_from_code("P3"), do: ".ppm"
 end

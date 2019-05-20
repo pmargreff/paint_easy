@@ -34,4 +34,24 @@ defmodule PaintEasy.Filters.Pixmap do
     |> Map.put(:g, new_green)
     |> Map.put(:b, new_blue)
   end
+
+
+  def to_sketch(%{r: red, g: green, b: blue} = pixel, _properties) do
+    intensity =  red + green + blue
+    |> div(3)
+    |> round()
+
+    new_pixel = resolve_scale(intensity)
+
+    pixel
+    |> Map.put(:r, new_pixel)
+    |> Map.put(:g, new_pixel)
+    |> Map.put(:b, new_pixel)
+  end
+
+  @high_intensity 140
+  @medium_intensity 100
+  defp resolve_scale(intensity) when intensity > @high_intensity, do: @pixel_limit
+  defp resolve_scale(intensity) when intensity > @medium_intensity, do: 150
+  defp resolve_scale(_), do: 0
 end

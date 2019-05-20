@@ -7,6 +7,7 @@ defmodule PaintEasy.Writer do
 
   def create_file(%{code: code} = image, path) do
     format = format_from_code(code)
+
     case File.open("#{path}.#{format}", [:write]) do
       {:ok, file} ->
         write_image(image, file)

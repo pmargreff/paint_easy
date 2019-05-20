@@ -11,7 +11,6 @@ defmodule PaintEasy.Reader do
   def read_file(path) do
     case File.open(path, [:read]) do
       {:ok, file} ->
-
         %{code: code, width: width} = image_info = decode_header(file)
 
         pixels = stream_to_pixel(code, IO.stream(file, :line), width)
@@ -43,12 +42,12 @@ defmodule PaintEasy.Reader do
       |> IO.binread(:line)
       |> String.split("\n", trim: true)
 
-      %Image{
-        code: code,
-        width: String.to_integer(width),
-        height: String.to_integer(height),
-        pixel_limit: String.to_integer(pixel_limit)
-      }
+    %Image{
+      code: code,
+      width: String.to_integer(width),
+      height: String.to_integer(height),
+      pixel_limit: String.to_integer(pixel_limit)
+    }
   end
 
   defp stream_to_pixel("P3", stream, width) do

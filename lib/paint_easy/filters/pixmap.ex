@@ -9,6 +9,7 @@ defmodule PaintEasy.Filters.Pixmap do
 
   @pixel_limit 255
   def to_grayscale(%{r: red, g: green, b: blue} = pixel, _properties) do
+    # credo:disable-for-next-lines:6 Credo.Check.Refactor.PipeChainStart
     gray_pixel =
       (red * @red_grayscale_constant +
          green * @green_grayscale_constant +
@@ -29,17 +30,18 @@ defmodule PaintEasy.Filters.Pixmap do
     new_red = @pixel_limit - red
     new_green = @pixel_limit - green
     new_blue = @pixel_limit - blue
+
     pixel
     |> Map.put(:r, new_red)
     |> Map.put(:g, new_green)
     |> Map.put(:b, new_blue)
   end
 
-
   def to_sketch(%{r: red, g: green, b: blue} = pixel, _properties) do
-    intensity =  red + green + blue
-    |> div(3)
-    |> round()
+    intensity =
+      (red + green + blue)
+      |> div(3)
+      |> round()
 
     new_pixel = resolve_scale(intensity)
 
@@ -51,7 +53,11 @@ defmodule PaintEasy.Filters.Pixmap do
 
   @high_intensity 140
   @medium_intensity 100
+
+  @lowest_tone 0
+  @medium_tone 150
+
   defp resolve_scale(intensity) when intensity > @high_intensity, do: @pixel_limit
-  defp resolve_scale(intensity) when intensity > @medium_intensity, do: 150
-  defp resolve_scale(_), do: 0
+  defp resolve_scale(intensity) when intensity > @medium_intensity, do: @medium_tone
+  defp resolve_scale(_), do: @lowest_tone
 end

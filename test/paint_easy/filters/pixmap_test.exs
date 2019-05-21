@@ -65,4 +65,22 @@ defmodule PaintEasy.Filters.PixmapTest do
              ]
     end
   end
+
+  describe "striped_grayscale/2" do
+    test "apply grayscale only on boundaries" do
+      fixture_file = File.cwd!() <> "/test/fixtures/ascii_image.ppm"
+      assert {:ok, image} = Reader.read_file(fixture_file)
+
+      %{pixels: pixels} = Editor.edit(image, &Filters.striped_grayscale/2)
+
+      assert Enum.to_list(pixels) == [
+               %Pixel{r: 255, g: 0, b: 0, x: 0, y: 0},
+               %Pixel{r: 0, g: 255, b: 0, x: 1, y: 0},
+               %Pixel{r: 0, g: 0, b: 255, x: 2, y: 0},
+               %Pixel{r: 255, g: 255, b: 0, x: 0, y: 1},
+               %Pixel{r: 255, g: 255, b: 255, x: 1, y: 1},
+               %Pixel{r: 0, g: 0, b: 0, x: 2, y: 1}
+             ]
+    end
+  end
 end

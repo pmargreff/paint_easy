@@ -60,4 +60,11 @@ defmodule PaintEasy.Filters.Pixmap do
   defp resolve_scale(intensity) when intensity > @high_intensity, do: @pixel_limit
   defp resolve_scale(intensity) when intensity > @medium_intensity, do: @medium_tone
   defp resolve_scale(_), do: @lowest_tone
+
+  @stripe_factor 200
+  def striped_grayscale(%{y: y} = pixel, options)
+      when div(@stripe_factor, 2) < rem(y, @stripe_factor),
+      do: to_grayscale(pixel, options)
+
+  def striped_grayscale(pixel, _options), do: pixel
 end

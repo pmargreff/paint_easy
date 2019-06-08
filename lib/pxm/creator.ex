@@ -32,6 +32,30 @@ defmodule PXM.Creator do
     height: @height
   }
 
+  @doc """
+  Allow to create image with pbm format.
+
+  ## Options
+
+    * `:width` - Image width, default is 1000.
+    * `:height` - Image height, default is 1000.
+
+  ## Example
+
+        iex> new_pbm(width: 3, height: 3)
+        {:ok,
+        %PXM.Image{
+          code: "P1",
+          height: 3,
+          pixel_limit: 1,
+          pixels: #Function<65.117072283/2 in Stream.unfold/2>,
+          width: 3
+        }}
+  """
+
+  @type image :: PXM.Image.t()
+
+  @spec new_pbm(none() | keyword()) :: image()
   def new_pbm(params \\ []) do
     resolution = get_resolution(params)
     pixels = create_pixels(resolution)

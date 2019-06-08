@@ -1,7 +1,19 @@
 defmodule PXM.Image do
+
   @moduledoc """
-  Documentation for PXM.Image
+  Defines an Image structure.
   """
+
+  @type pixel :: PXM.Pixel.t()
+
+  @type t :: %{
+          code: String.t(),
+          height: integer(),
+          pixel_limit: integer(),
+          pixels: Stream.t(list(pixel())),
+          width: integer()
+        }
+
   defstruct code: nil,
             height: nil,
             pixel_limit: nil,

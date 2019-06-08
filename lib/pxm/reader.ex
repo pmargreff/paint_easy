@@ -1,9 +1,9 @@
-defmodule PaintEasy.Reader do
+defmodule PXM.Reader do
   @moduledoc """
   Module responsible to open an image from a file.
   """
 
-  alias PaintEasy.{
+  alias PXM.{
     Image,
     Pixel
   }

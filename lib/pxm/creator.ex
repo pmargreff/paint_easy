@@ -1,8 +1,8 @@
-defmodule PaintEasy.Creator do
+defmodule PXM.Creator do
   @moduledoc """
   Module to create new images
   """
-  alias PaintEasy.{
+  alias PXM.{
     Image,
     Pixel
   }

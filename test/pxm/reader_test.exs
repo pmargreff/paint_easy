@@ -1,7 +1,7 @@
-defmodule PaintEasy.ReaderTest do
+defmodule PXM.ReaderTest do
   @moduledoc false
 
-  alias PaintEasy.{
+  alias PXM.{
     Pixel,
     Reader
   }

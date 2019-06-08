@@ -1,16 +1,16 @@
-defmodule PaintEasy.Filters.PixmapTest do
+defmodule PXM.Filters.PixmapTest do
   @moduledoc false
 
-  alias PaintEasy.{
+  alias PXM.{
     Editor,
     Pixel,
     Reader
   }
 
-  alias PaintEasy.Filters.Pixmap, as: Filters
+  alias PXM.Filters.Pixmap, as: Filters
 
   use ExUnit.Case
-  doctest PaintEasy
+  doctest PXM
 
   describe "reduce_to_grayscale/2" do
     test "reduce colored image to grayscale version" do

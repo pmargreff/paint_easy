@@ -1,5 +1,5 @@
-defmodule PaintEasy.Writer do
-  alias PaintEasy.Image
+defmodule PXM.Writer do
+  alias PXM.Image
 
   @moduledoc """
   Module to write image file on output device.

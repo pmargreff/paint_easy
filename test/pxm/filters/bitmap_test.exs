@@ -1,16 +1,16 @@
-defmodule PaintEasy.Filters.BitmapTest do
+defmodule PXM.Filters.BitmapTest do
   @moduledoc false
 
-  alias PaintEasy.{
+  alias PXM.{
     Creator,
     Editor,
     Pixel
   }
 
-  alias PaintEasy.Filters.Bitmap, as: Filters
+  alias PXM.Filters.Bitmap, as: Filters
 
   use ExUnit.Case
-  doctest PaintEasy
+  doctest PXM
 
   describe "horizontal_line/2" do
     test "create an horizontal line in a small bitmap image" do

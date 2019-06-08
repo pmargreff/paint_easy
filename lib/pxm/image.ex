@@ -1,6 +1,6 @@
-defmodule PaintEasy.Image do
+defmodule PXM.Image do
   @moduledoc """
-  Documentation for PaintEasy.Image
+  Documentation for PXM.Image
   """
   defstruct code: nil,
             height: nil,

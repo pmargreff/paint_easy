@@ -1,7 +1,7 @@
-defmodule PaintEasy.EditorTest do
+defmodule PXM.EditorTest do
   @moduledoc false
 
-  alias PaintEasy.{
+  alias PXM.{
     Creator,
     Editor
   }

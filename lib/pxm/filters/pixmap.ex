@@ -1,4 +1,4 @@
-defmodule PaintEasy.Filters.Pixmap do
+defmodule PXM.Filters.Pixmap do
   @moduledoc """
   Create a samples about how to write ppm functions for edition.
   """

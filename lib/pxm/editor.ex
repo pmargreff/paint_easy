@@ -1,4 +1,4 @@
-defmodule PaintEasy.Editor do
+defmodule PXM.Editor do
   @moduledoc """
   Proxy to edit images.
   """

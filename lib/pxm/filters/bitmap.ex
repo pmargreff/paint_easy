@@ -1,4 +1,4 @@
-defmodule PaintEasy.Filters.Bitmap do
+defmodule PXM.Filters.Bitmap do
   @moduledoc """
   Create a sample about how to write pbm edition functions
   """

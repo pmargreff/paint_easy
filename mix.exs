@@ -1,9 +1,10 @@
-defmodule PaintEasy.MixProject do
+defmodule PXM.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :paint_easy,
+      app: :pxm,
+      description: "A package to handle images from PPM format.",
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
@@ -13,7 +14,9 @@ defmodule PaintEasy.MixProject do
         "coveralls.html": :test,
         "coveralls.json": :test
       ],
-      test_coverage: [tool: ExCoveralls]
+      test_coverage: [tool: ExCoveralls],
+      source_url: "https://github.com/pmargreff/pxm",
+      package: package()
     ]
   end
 
@@ -27,6 +30,15 @@ defmodule PaintEasy.MixProject do
     [
       {:credo, "~> 1.0.5", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.10.6"}
+    ]
+  end
+
+  defp package() do
+    [
+      files: ~w(lib priv .formatter.exs mix.exs README* readme* LICENSE*
+                license* CHANGELOG* changelog* src),
+      licenses: ["Apache-2.0"],
+      links: %{"GitHub" => "https://github.com/pmargreff/PXM."}
     ]
   end
 end

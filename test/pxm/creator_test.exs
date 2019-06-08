@@ -1,13 +1,13 @@
-defmodule PaintEasy.CreatorTest do
+defmodule PXM.CreatorTest do
   @moduledoc false
 
-  alias PaintEasy.{
+  alias PXM.{
     Creator,
     Pixel
   }
 
   use ExUnit.Case
-  doctest PaintEasy
+  doctest PXM
 
   describe "new_pbm/2" do
     test "create new image with mapped pixels" do

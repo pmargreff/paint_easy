@@ -1,4 +1,4 @@
-defmodule PaintEasy.Pixel do
+defmodule PXM.Pixel do
   @default_color 0
 
   @moduledoc """

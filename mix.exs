@@ -1,14 +1,17 @@
 defmodule PXM.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [
       app: :pxm,
       description: "A package to handle images from PPM format.",
-      version: "0.1.0",
+      version: @version,
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
+      docs: docs(),
       preferred_cli_env: [
         coveralls: :test,
         "coveralls.html": :test,
@@ -34,8 +37,19 @@ defmodule PXM.MixProject do
     ]
   end
 
+  defp docs() do
+    [
+      source_ref: "v#{@version}",
+      main: "readme",
+      extras: [
+        "README.md": [title: "README"]
+      ]
+    ]
+  end
+
   defp package() do
     [
+      maintainers: ["Pablo Margreff"],
       files: ~w(lib .formatter.exs mix.exs README*),
       licenses: ["Apache-2.0"],
       links: %{"GitHub" => "https://github.com/pmargreff/PXM."}

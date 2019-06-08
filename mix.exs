@@ -29,7 +29,8 @@ defmodule PXM.MixProject do
   defp deps do
     [
       {:credo, "~> 1.0.5", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.10.6"}
+      {:excoveralls, "~> 0.10.6"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 

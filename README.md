@@ -12,7 +12,7 @@ Using the package you should be able to read, create, edit and save images using
 
 ## Limitations
 
-On current time this package is not have capabilities to read binary format allowed by ppm images (P4, P5 and P6 types).
+On current time this package has no capabilities to read binary format allowed by ppm images (P4, P5 and P6 types).
 
 ## Installation
 
